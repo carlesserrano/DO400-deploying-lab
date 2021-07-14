@@ -31,6 +31,12 @@ pipeline {
             steps {
                 sh "oc rollout latest dc/home-automation -n fhulfv-deploying-lab-test"
             }
-        }        
+        }
+        stage ('Deploy to PROD') {
+            when {branch "main"}
+            steps {
+                sh "oc rollout latest dc/home-automation -n fhulfv-deploying-lab-prod"
+            }
+        }
     }
 }
